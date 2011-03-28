@@ -1,8 +1,4 @@
 require 'app'
-require 'sass/plugin/rack'
-use Sass::Plugin::Rack
-
-Sass::Plugin.options[:never_update] = true
 
 
  
