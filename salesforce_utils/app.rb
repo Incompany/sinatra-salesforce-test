@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'rforce'
+require 'json'
 gem 'rforce'
 
 include RForce
@@ -105,11 +106,11 @@ end
 	get '/' do
 
 				hash_array = fetch_candidatos()
-			  tamaño = hash_array.length
+			  #tamaño = hash_array.length
 			  answer_keys = hash_array[0].keys()
-			  for i in 0 ..tamaño - 1 do
-			  	
-			  end
+			  #for i in 0 ..tamaño - 1 do
+			  name = hash_array.to_json
+			  #end
 			  #puts tamaño
 			  #name = hash_array.inspect
 			  #name = ""

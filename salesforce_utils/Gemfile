@@ -4,5 +4,5 @@ gem 'sinatra'
 gem 'rforce'
 gem 'haml'
 gem 'builder'
-gem 'stringio'
+gem 'json'
 

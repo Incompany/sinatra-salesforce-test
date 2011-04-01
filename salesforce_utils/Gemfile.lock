@@ -3,6 +3,7 @@ GEM
   specs:
     builder (3.0.0)
     haml (3.0.25)
+    json (1.5.1)
     oauth (0.4.4)
     rack (1.2.2)
     rforce (0.7)
@@ -19,5 +20,6 @@ PLATFORMS
 DEPENDENCIES
   builder
   haml
+  json
   rforce
   sinatra
