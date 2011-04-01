@@ -21,7 +21,7 @@ def fetch_candidatos()
 				#fetch de datos al salesforce
 				answer = binding.query  \
     :queryString =>
-      'select id, name, Empresa_cliente__c, Apellidos__c, Puesto__c, Celular__c, Sector__c, Susbsector__c, Empresa_c__c, Correo_Electronico__c, Telefono__c, Fax__c, Otro_Asesor_Relacionado__c, Detallada__c, Calle__c, Ciudad__c, Estado_o_Provincia__c, Zip_Code__c, Pa_s__c, Numero_de_Empleados__c, Sitio_Web__c, Origen__c from Candidato__c'
+      'select id, Name, EmpresaCliente__c, Apellidos__c, Puesto__c, Celular__c, Sector__c, Susbsector__c, Empresa__c, CorreoElectronico__c, Telefono__c, Fax__c, OtroAsesorRelacionado__c, Detallada__c, Calle__c, Ciudad__c, EstadoProvincia__c, ZipCode__c, Pais__c, NumeroEmpleados__c, SitioWeb__c, Origen__c from Candidato__c'
       	
       	
       	name = ""
@@ -31,27 +31,28 @@ def fetch_candidatos()
       	for i in 0..((((answer[:queryResponse])[:result])[:records]).length) -1 do
 			  	#name = name + String(((((answer[:queryResponse])[:result])[:records])[i])[:Name]) + "\n" 
 			  	content_array[i] = {"name" => ((((answer[:queryResponse])[:result])[:records])[i])[:Name],
-			  		"Empresa_cliente" => ((((answer[:queryResponse])[:result])[:records])[i])[:Empresa_cliente__c],
+			  		"Empresa_cliente" => ((((answer[:queryResponse])[:result])[:records])[i])[:EmpresaCliente__c],
 			  		"Apellidos" => ((((answer[:queryResponse])[:result])[:records])[i])[:Apellidos__c],
 			  		"Puesto" => ((((answer[:queryResponse])[:result])[:records])[i])[:Puesto__c],
 			  		"Celular" => ((((answer[:queryResponse])[:result])[:records])[i])[:Celular__c],
 			  		"Sector" => ((((answer[:queryResponse])[:result])[:records])[i])[:Sector__c],
 			  		"Susbsector" => ((((answer[:queryResponse])[:result])[:records])[i])[:Susbsector__c],
 			  		"Empresa_c" => ((((answer[:queryResponse])[:result])[:records])[i])[:Empresa__c],
-			  		"Correo_Electronico" => ((((answer[:queryResponse])[:result])[:records])[i])[:Correo_Electronico__c],
+			  		"Correo_Electronico" => ((((answer[:queryResponse])[:result])[:records])[i])[:CorreoElectronico__c],
 			  		"Telefono" => ((((answer[:queryResponse])[:result])[:records])[i])[:Telefono__c],
 			  		"Fax" => ((((answer[:queryResponse])[:result])[:records])[i])[:Fax__c],
-			  		"Otro_Asesor_Relacionado" => ((((answer[:queryResponse])[:result])[:records])[i])[:Otro_Asesor_Relacionado__c],
+			  		"Otro_Asesor_Relacionado" => ((((answer[:queryResponse])[:result])[:records])[i])[:OtroAsesorRelacionado__c],
 			  		"Detallada" => ((((answer[:queryResponse])[:result])[:records])[i])[:Detallada__c],
 			  		"Calle" => ((((answer[:queryResponse])[:result])[:records])[i])[:Calle__c],
 			  		"Ciudad" => ((((answer[:queryResponse])[:result])[:records])[i])[:Ciudad__c],
-			  		"Estado_o_Provincia" => ((((answer[:queryResponse])[:result])[:records])[i])[:Estado_o_Provincia__c],
-			  		"Zip_Code" => ((((answer[:queryResponse])[:result])[:records])[i])[:Zip_Code__c],
-			  		"Pa_s" => ((((answer[:queryResponse])[:result])[:records])[i])[:Pa_s__c],
-			  		"Numero_de_Empleados" => ((((answer[:queryResponse])[:result])[:records])[i])[:Numero_de_Empleados__c],
-			  		"Sitio_Web" => ((((answer[:queryResponse])[:result])[:records])[i])[:Sitio_Web__c],
+			  		"Estado_o_Provincia" => ((((answer[:queryResponse])[:result])[:records])[i])[:EstadoProvincia__c],
+			  		"Zip_Code" => ((((answer[:queryResponse])[:result])[:records])[i])[:ZipCode__c],
+			  		"Pa_s" => ((((answer[:queryResponse])[:result])[:records])[i])[:Pais__c],
+			  		"Numero_de_Empleados" => ((((answer[:queryResponse])[:result])[:records])[i])[:NumeroEmpleados__c],
+			  		"Sitio_Web" => ((((answer[:queryResponse])[:result])[:records])[i])[:SitioWeb__c],
 			  		"Origen" => ((((answer[:queryResponse])[:result])[:records])[i])[:Origen__c]}
 			  end			  
+			  #content_array= answer.inspect
 			  return content_array
 			  #return name
       
@@ -109,7 +110,7 @@ end
 
 				hash_array = fetch_candidatos()
 			  #tamaño = hash_array.length
-			  answer_keys = hash_array[0].keys()
+			  #answer_keys = hash_array[0].keys()
 			  #for i in 0 ..tamaño - 1 do
 			  name = hash_array.to_json
 			  #end
