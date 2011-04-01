@@ -98,7 +98,9 @@ def create_cuenta()
 
 
 end
-
+	get '/requestClientes' do
+String(fetch_candidatos().to_json)
+end
 
 	
 #######################
