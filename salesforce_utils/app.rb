@@ -21,7 +21,7 @@ def fetch_candidatos()
 				#fetch de datos al salesforce
 				answer = binding.query  \
     :queryString =>
-      'select id, Name, EmpresaCliente__c, Apellidos__c, Puesto__c, Celular__c, Sector__c, Susbsector__c, Empresa__c, CorreoElectronico__c, Telefono__c, Fax__c, OtroAsesorRelacionado__c, Detallada__c, Calle__c, Ciudad__c, EstadoProvincia__c, ZipCode__c, Pais__c, NumeroEmpleados__c, SitioWeb__c, Origen__c from Candidato__c'
+      'select id, Name, EmpresaCliente__c, Apellidos__c, Puesto__c, Celular__c, Sector__c, Susbsector__c, Empresa__c, CorreoElectronico__c, Telefono__c, Fax__c, OtroAsesorRelacionado__c, Detallada__c, Calle__c, Ciudad__c, EstadoProvincia__c, Pais__c, NumeroEmpleados__c, SitioWeb__c, Origen__c from Candidato__c'
       	
       	
       	name = ""
@@ -46,7 +46,7 @@ def fetch_candidatos()
 			  		"Calle" => ((((answer[:queryResponse])[:result])[:records])[i])[:Calle__c],
 			  		"Ciudad" => ((((answer[:queryResponse])[:result])[:records])[i])[:Ciudad__c],
 			  		"Estado_o_Provincia" => ((((answer[:queryResponse])[:result])[:records])[i])[:EstadoProvincia__c],
-			  		"Zip_Code" => ((((answer[:queryResponse])[:result])[:records])[i])[:ZipCode__c],
+			  		#"Zip_Code" => ((((answer[:queryResponse])[:result])[:records])[i])[:ZipCode__c],
 			  		"Pa_s" => ((((answer[:queryResponse])[:result])[:records])[i])[:Pais__c],
 			  		"Numero_de_Empleados" => ((((answer[:queryResponse])[:result])[:records])[i])[:NumeroEmpleados__c],
 			  		"Sitio_Web" => ((((answer[:queryResponse])[:result])[:records])[i])[:SitioWeb__c],
@@ -56,6 +56,37 @@ def fetch_candidatos()
 			  return content_array
 			  #return name
       
+end
+
+def fetch_clientes()
+#Contacto__c
+
+		#login
+		      binding = RForce::Binding.new \
+     'https://www.salesforce.com/services/Soap/u/20.0'
+
+   				binding.login \
+     'admin@afd.co.cr', 'company12YADanWugQZ6Elt5EZqLQIyWT'
+  
+				#fetch de datos al salesforce
+				answer = binding.query  \
+    :queryString =>
+      'select id, Name from Contacto__c'
+      	
+      	
+      	name = ""
+     #llenado del arreglo de hashes que contiene todo el fetch de informacion 	
+     #con los mismos keys acá definidos debe extraerse la info del hash array
+      	content_array = []
+      	for i in 0..((((answer[:queryResponse])[:result])[:records]).length) -1 do
+			  	#name = name + String(((((answer[:queryResponse])[:result])[:records])[i])[:Name]) + "\n" 
+			  	content_array[i] = {"Id" => ((((answer[:queryResponse])[:result])[:records])[i])[:Id],
+			  		"Name" => ((((answer[:queryResponse])[:result])[:records])[i])[:Name]}
+			  end			  
+			  #content_array= answer.inspect
+			  return content_array
+			  #return name
+
 end
 
 
@@ -100,7 +131,7 @@ def create_cuenta()
 
 end
 	get '/requestClientes' do
-String(fetch_candidatos().to_json)
+String(fetch_clientes().to_json)
 end
 
 	
