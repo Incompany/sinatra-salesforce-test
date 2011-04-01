@@ -1,0 +1,8 @@
+source :gemcutter
+require 'rubygems'
+gem 'sinatra'
+gem 'rforce'
+gem 'haml'
+gem 'builder'
+gem 'stringio'
+

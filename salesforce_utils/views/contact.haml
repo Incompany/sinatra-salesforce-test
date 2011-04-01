@@ -1,0 +1,20 @@
+%form{ :action => "", :method => "post"}
+  %fieldset
+    %ol
+      %li
+        %label{:for => "name"} Nombre:
+        %input{:type => "text", :name => "name", :class => "text"}
+      %li
+        %label{:for => "lname"} Apellidos:
+        %input{:type => "text", :name => "lname", :class => "text"}
+      %li
+        %label{:for => "email"} Email:
+        %input{:type => "text", :name => "email", :class => "text"}
+      %li
+        %label{:for => "phone"} Teléfono:
+        %input{:type => "text", :name => "phone", :class => "text"}
+      %li
+        %label{:for => "aux"} ¿Cómo le podemos ayudar?:
+        %textarea{:name => "aux"}
+    %input{:type => "submit", :value => "Send", :class => "button"}
+
